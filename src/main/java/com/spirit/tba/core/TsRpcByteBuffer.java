@@ -1,12 +1,12 @@
-package com.spirit.tsserialize.core;
+package com.spirit.tba.core;
 
 import java.io.UnsupportedEncodingException;
 import java.nio.ByteBuffer;
-
-import com.spirit.tsserialize.Exception.TsException;
+import com.spirit.tba.Exception.TsException;
+import com.spirit.tba.Exception.TsException;
 import org.apache.thrift.TException;
-
-import static com.spirit.tsserialize.Exception.ErrorType.WRITE_BUFFER_OUT_OF_RANGE_EXCEPTION;
+import static com.spirit.tba.Exception.ErrorType.WRITE_BUFFER_OUT_OF_RANGE_EXCEPTION;
+import static com.spirit.tba.Exception.ErrorType.WRITE_BUFFER_OUT_OF_RANGE_EXCEPTION;
 
 
 public class TsRpcByteBuffer {

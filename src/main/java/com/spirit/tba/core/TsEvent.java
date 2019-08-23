@@ -1,4 +1,4 @@
-package com.spirit.tsserialize.core;
+package com.spirit.tba.core;
 
 
 public class TsEvent {

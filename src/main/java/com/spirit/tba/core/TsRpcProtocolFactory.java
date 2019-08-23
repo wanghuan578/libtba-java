@@ -1,6 +1,6 @@
-package com.spirit.tsserialize.core;
+package com.spirit.tba.core;
 
-import com.spirit.tsserialize.Exception.TsException;
+import com.spirit.tba.Exception.TsException;
 import org.apache.thrift.TBase;
 
 
