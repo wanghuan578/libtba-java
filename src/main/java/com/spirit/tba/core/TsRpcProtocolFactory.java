@@ -1,6 +1,6 @@
 package com.spirit.tba.core;
 
-import com.spirit.tba.Exception.TsException;
+import com.spirit.tba.Exception.TbaException;
 import org.apache.thrift.TBase;
 
 
@@ -10,19 +10,19 @@ public class TsRpcProtocolFactory <TMessageBody extends TBase> {
 	private TsRpcMessageBuilder message_builder;
 
 	public TsRpcProtocolFactory (final TMessageBody body, final TsRpcHead head, int buff_size) {
-		message_builder = new TsRpcMessageBuilder(body, head, buff_size, TsRpcHead.Size());
+		message_builder = new TsRpcMessageBuilder(body, head, buff_size, TsRpcHead.HEAD_SIZE);
 	}
 
 	public TsRpcProtocolFactory(final TsRpcByteBuffer buff){
 		event_parser = new TsRpcEventParser(buff);
 	}
 
-	public TsRpcProtocolFactory Encode() throws TsException {
+	public TsRpcProtocolFactory Encode() throws TbaException {
 		message_builder.Encode();
 		return this;
 	}
 
-	public TMessageBody Decode(Class<TMessageBody> clazz) throws TsException, InstantiationException, IllegalAccessException {
+	public TMessageBody Decode(Class<TMessageBody> clazz) throws TbaException, InstantiationException, IllegalAccessException {
 		return (TMessageBody) event_parser.Decode(clazz);
 	}
 

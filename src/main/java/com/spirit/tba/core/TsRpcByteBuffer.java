@@ -2,11 +2,10 @@ package com.spirit.tba.core;
 
 import java.io.UnsupportedEncodingException;
 import java.nio.ByteBuffer;
-import com.spirit.tba.Exception.TsException;
-import com.spirit.tba.Exception.TsException;
+import com.spirit.tba.Exception.TbaException;
 import org.apache.thrift.TException;
 import static com.spirit.tba.Exception.ErrorType.WRITE_BUFFER_OUT_OF_RANGE_EXCEPTION;
-import static com.spirit.tba.Exception.ErrorType.WRITE_BUFFER_OUT_OF_RANGE_EXCEPTION;
+
 
 
 public class TsRpcByteBuffer {
@@ -64,36 +63,9 @@ public class TsRpcByteBuffer {
 		buffer = buff.GetBytes();
 	}
 	
-//	public TsRpcByteBuffer(String source){
-//
-//		stringBuffer = source;
-//	}
-	
-//	public String Append(String source){
-//
-//		String tmp_buff = null;
-//
-//		tmp_buff = stringBuffer + source;
-//
-//		return (stringBuffer = tmp_buff);
-//	}
-	
-//	public String GetString(){
-//
-//		return stringBuffer;
-//	}
-	
-//	public int Size(){
-//		return bufferSize;
-//	}
-	
 	public int Length(){
 		return writebufferEnd;
 	}
-
-//	public byte[] GetBytes(){
-//		return buffer;
-//	}
 
 	public byte[] GetBytes(){
 		byte [] dest = new byte [writebufferEnd];
@@ -131,7 +103,7 @@ public class TsRpcByteBuffer {
 		WriteByte(b ? (byte)1 : (byte)0);
 	}
 	
-	public boolean WriteI16(short i16) throws TsException {
+	public boolean WriteI16(short i16) throws TbaException {
 		
 		try {
 			buffer[writebufferEnd++] = (byte) (i16>>8 & 0xff);
@@ -139,13 +111,13 @@ public class TsRpcByteBuffer {
 		}
 		catch(Exception e)
 		{
-			throw new TsException(WRITE_BUFFER_OUT_OF_RANGE_EXCEPTION);
+			throw new TbaException(WRITE_BUFFER_OUT_OF_RANGE_EXCEPTION);
 		}
 		
 		return true;
 	}
 
-	public boolean WriteI32(int i32) throws TsException {
+	public boolean WriteI32(int i32) throws TbaException {
 		
 		try
 		{
@@ -156,13 +128,13 @@ public class TsRpcByteBuffer {
 		} 
 		catch (Exception e) 
 		{
-			throw new TsException(WRITE_BUFFER_OUT_OF_RANGE_EXCEPTION);
+			throw new TbaException(WRITE_BUFFER_OUT_OF_RANGE_EXCEPTION);
 		}
 		
 		return true;
 	}
 	
-	public boolean WriteI64(long i64) throws TsException {
+	public boolean WriteI64(long i64) throws TbaException {
 		
 		try
 		{
@@ -178,18 +150,18 @@ public class TsRpcByteBuffer {
 		} 
 		catch (Exception e) 
 		{
-			throw new TsException(WRITE_BUFFER_OUT_OF_RANGE_EXCEPTION);
+			throw new TbaException(WRITE_BUFFER_OUT_OF_RANGE_EXCEPTION);
 		}
 		
 		return true;
 	}
 	
-	public boolean WriteDouble(double d64) throws TsException {
+	public boolean WriteDouble(double d64) throws TbaException {
 		WriteI64(Double.doubleToLongBits(d64));
 		return true;
 	}
 	
-	public boolean WriteString(String str) throws TsException {
+	public boolean WriteString(String str) throws TbaException {
 		
 		byte[] dat = null;
 		
@@ -209,13 +181,13 @@ public class TsRpcByteBuffer {
 		} 
 		catch (UnsupportedEncodingException e) 
 		{
-			throw new TsException(WRITE_BUFFER_OUT_OF_RANGE_EXCEPTION);
+			throw new TbaException(WRITE_BUFFER_OUT_OF_RANGE_EXCEPTION);
 		}
 		
 	    return true;
 	}
 	
-	public boolean WriteBinary(ByteBuffer buff) throws TsException {
+	public boolean WriteBinary(ByteBuffer buff) throws TbaException {
 		
 		int length = buff.limit() - buff.position() - buff.arrayOffset();
 		WriteI32(length);
@@ -225,7 +197,7 @@ public class TsRpcByteBuffer {
 		return true;
 	}
 	    
-	public boolean WriteBinary(byte[] data, int length) throws TsException {
+	public boolean WriteBinary(byte[] data, int length) throws TbaException {
 		
 		try
 		{
@@ -238,7 +210,7 @@ public class TsRpcByteBuffer {
 		}
 		catch(Exception e)
 		{
-			throw new TsException(WRITE_BUFFER_OUT_OF_RANGE_EXCEPTION);
+			throw new TbaException(WRITE_BUFFER_OUT_OF_RANGE_EXCEPTION);
 		}
 		
 		return true;

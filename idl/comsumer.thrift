@@ -1,10 +1,10 @@
 
 include "common.thrift"
-namespace java com.spirit.essential.rpc.protocol.thrift
-//namespace cpp essential.consumer
+//namespace java com.spirit.essential.rpc.protocol.thrift
+namespace cpp essential.consumer
 
-enum ConsumerMessageType
-//enum MessageType
+//enum ConsumerMessageType
+enum MessageType
 {   
     MT_SERVICE_LIST_REQ = 1100,
     MT_SERVICE_LIST_RES,

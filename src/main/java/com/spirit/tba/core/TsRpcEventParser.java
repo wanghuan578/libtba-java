@@ -1,6 +1,6 @@
 package com.spirit.tba.core;
 
-import com.spirit.tba.Exception.TsException;
+import com.spirit.tba.Exception.TbaException;
 import org.apache.thrift.TBase;
 import org.apache.thrift.TException;
 import org.apache.thrift.protocol.TProtocol;
@@ -24,9 +24,9 @@ public class TsRpcEventParser<TMessageBody extends TBase> {
 		in_stream = new TsRpcByteBuffer(in, offset);
 	}
 
-	public TMessageBody Decode(Class<TMessageBody> clazz) throws TsException, IllegalAccessException, InstantiationException {
+	public TMessageBody Decode(Class<TMessageBody> clazz) throws TbaException, IllegalAccessException, InstantiationException {
 
-		TProtocol protocol = new TsRpcThriftBinaryProtocol(in_stream, TsRpcHead.Size(), (in_stream.Length() - TsRpcHead.Size()));
+		TProtocol protocol = new TsRpcThriftBinaryProtocol(in_stream, TsRpcHead.HEAD_SIZE, (in_stream.Length() - TsRpcHead.HEAD_SIZE));
 
 		body_ = clazz.newInstance();
 
@@ -34,11 +34,11 @@ public class TsRpcEventParser<TMessageBody extends TBase> {
 			body_.read(protocol);
 			return body_;
 		} catch (TException e) {
-			throw new TsException(UNEXPECTED_EXCEPTION.SetText(e.getMessage()));
+			throw new TbaException(UNEXPECTED_EXCEPTION.SetText(e.getMessage()));
 		}
 	}
 
-	public TMessageBody ToEvent(Class<TMessageBody> clazz, int offset) throws TsException, IllegalAccessException, InstantiationException {
+	public TMessageBody ToEvent(Class<TMessageBody> clazz, int offset) throws TbaException, IllegalAccessException, InstantiationException {
 
 		TProtocol protocol = new TsRpcThriftBinaryProtocol(in_stream, offset, (in_stream.Length() - offset));
 
@@ -48,7 +48,7 @@ public class TsRpcEventParser<TMessageBody extends TBase> {
 			body_.read(protocol);
 			return body_;
 		} catch (TException e) {
-			throw new TsException(UNEXPECTED_EXCEPTION.SetText(e.getMessage()));
+			throw new TbaException(UNEXPECTED_EXCEPTION.SetText(e.getMessage()));
 		}
 	}
 
