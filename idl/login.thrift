@@ -1,10 +1,10 @@
 
 include "common.thrift"
-//namespace cpp essential.login
-namespace java com.spirit.essential.rpc.protocol.thrift
+namespace cpp essential.login
+//namespace java com.spirit.essential.rpc.protocol.thrift
 
-enum LoginMessageType
-//enum MessageType
+//enum LoginMessageType
+enum MessageType
 {   
     MT_CLIENT_PASSWORD_LOGIN_REQ = 500,
     MT_CLIENT_LOGIN_RES,

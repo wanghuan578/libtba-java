@@ -1,7 +1,7 @@
 package com.spirit.tba.core;
 
 
-import com.spirit.tba.Exception.TsException;
+import com.spirit.tba.Exception.TbaException;
 import org.apache.thrift.TBase;
 import org.apache.thrift.protocol.TProtocol;
 import static com.spirit.tba.Exception.ErrorType.*;
@@ -29,27 +29,27 @@ public class TsRpcMessageBuilder<TMessageBody extends TBase>{
 		body_ = concrate;
 	}
 
-	public int Encode() throws TsException {
+	public int Encode() throws TbaException {
 		try {
 			body_.write(protocol);
 			return SerializeHead(head_);
 		}
 		catch (Exception e) {
-			throw new TsException(UNEXPECTED_EXCEPTION.SetText(e.getMessage()));
+			throw new TbaException(UNEXPECTED_EXCEPTION.SetText(e.getMessage()));
 		}
 	}
 
-	public TsRpcMessageBuilder Serialize() throws TsException {
+	public TsRpcMessageBuilder Serialize() throws TbaException {
 		try {
 			body_.write(protocol);
 			return this;
 		}
 		catch (Exception e) {
-			throw new TsException(UNEXPECTED_EXCEPTION.SetText(e.getMessage()));
+			throw new TbaException(UNEXPECTED_EXCEPTION.SetText(e.getMessage()));
 		}
 	}
 
-	public int SerializeHead(TsRpcHead head) throws TsException {
+	public int SerializeHead(TsRpcHead head) throws TbaException {
 
 		int end = out_stream.Length();
 

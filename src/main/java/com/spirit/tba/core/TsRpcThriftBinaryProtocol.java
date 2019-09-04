@@ -2,7 +2,7 @@ package com.spirit.tba.core;
 
 
 import java.nio.ByteBuffer;
-import com.spirit.tba.Exception.TsException;
+import com.spirit.tba.Exception.TbaException;
 import org.apache.thrift.TException;
 import org.apache.thrift.protocol.TField;
 import org.apache.thrift.protocol.TList;
@@ -14,7 +14,6 @@ import org.apache.thrift.protocol.TStruct;
 import org.apache.thrift.protocol.TType;
 import org.apache.thrift.transport.TTransport;
 
-import static com.spirit.tba.Exception.ErrorType.WRITE_BUFFER_OUT_OF_RANGE_EXCEPTION;
 
 public class TsRpcThriftBinaryProtocol extends TProtocol {
 
@@ -129,7 +128,7 @@ public class TsRpcThriftBinaryProtocol extends TProtocol {
 	public void writeI16(short i16) throws TException {
 		try {
 			writeBuff.WriteI16(i16);
-		} catch (TsException e) {
+		} catch (TbaException e) {
 			e.printStackTrace();
 		}
 	}
@@ -139,7 +138,7 @@ public class TsRpcThriftBinaryProtocol extends TProtocol {
 
 		try {
 			writeBuff.WriteI32(i32);
-		} catch (TsException e) {
+		} catch (TbaException e) {
 			e.printStackTrace();
 		}
 	}
@@ -148,7 +147,7 @@ public class TsRpcThriftBinaryProtocol extends TProtocol {
 	public void writeI64(long i64) throws TException {
 		try {
 			writeBuff.WriteI64(i64);
-		} catch (TsException e) {
+		} catch (TbaException e) {
 			e.printStackTrace();
 		}
 	}
@@ -157,7 +156,7 @@ public class TsRpcThriftBinaryProtocol extends TProtocol {
 	public void writeDouble(double dub) throws TException {
 		try {
 			writeBuff.WriteDouble(dub);
-		} catch (TsException e) {
+		} catch (TbaException e) {
 			e.printStackTrace();
 		}
 	}
@@ -167,7 +166,7 @@ public class TsRpcThriftBinaryProtocol extends TProtocol {
 
 		try {
 			writeBuff.WriteString(str);
-		} catch (TsException e) {
+		} catch (TbaException e) {
 			e.printStackTrace();
 		}
 	}
@@ -176,7 +175,7 @@ public class TsRpcThriftBinaryProtocol extends TProtocol {
 	public void writeBinary(ByteBuffer buf) throws TException {
 		try {
 			writeBuff.WriteBinary(buf);
-		} catch (TsException e) {
+		} catch (TbaException e) {
 			e.printStackTrace();
 		}
 	}

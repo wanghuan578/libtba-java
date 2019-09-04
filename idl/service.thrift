@@ -1,13 +1,13 @@
 
 include "common.thrift"
-namespace java com.spirit.essential.rpc.protocol.thrift
-//namespace cpp essential.provider
+//namespace java com.spirit.essential.rpc.protocol.thrift
+namespace cpp essential.service
 
-enum QualityMessageType
-//enum MessageType
+//enum QualityMessageType
+enum MessageType
 {   
-	MT_SERVICE_QUALITY_SYNC 		= 1500,
-	MT_SERVICE_QUALITY_RES,
+	MT_SERVICE_STATE_SYNC 		= 1500,
+	MT_SERVICE_STATEY_RES,
 }
 
 struct ApplicationInfo

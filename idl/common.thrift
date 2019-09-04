@@ -1,11 +1,12 @@
 
-//namespace cpp essential.common
-namespace java com.spirit.essential.rpc.protocol.thrift
+namespace cpp essential.common
+//namespace java com.spirit.essential.rpc.protocol.thrift
 
-enum CommonMessageType
-//enum MessageType
+//enum CommonMessageType
+enum MessageType
 {
     MT_HELLO_NOTIFY		= 100,
+	MT_HELLO_RES,
     MT_KEEPALIVE_REQ,
     MT_KEEPALIVE_RES,
 }
