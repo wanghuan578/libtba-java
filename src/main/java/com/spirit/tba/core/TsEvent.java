@@ -13,6 +13,11 @@ public class TsEvent {
         this.len = len;
     }
 
+    public TsEvent(TsRpcHead head, Object body) {
+        this.head = head;
+        this.body = body;
+    }
+
     public TsRpcHead getHead() {
         return head;
     }

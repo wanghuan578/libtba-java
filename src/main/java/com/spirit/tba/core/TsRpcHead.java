@@ -98,8 +98,8 @@ public class TsRpcHead {
 		this.flag = flag;
 	}
 
-	public void SetType(int type){
-		this.type = (short)type;
+	public void SetType(short type){
+		this.type = type;
 	}
 
 	public void SetSequence(int seq){

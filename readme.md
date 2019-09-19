@@ -69,7 +69,8 @@ public class TsRpcHead {
 
 
 ```
-	byte[] msg = TbaUtil<ServiceInfo>().Serialize(clazz, 1024);
+	byte[] data = new TbaUtil<ServiceInfo>().Serialize(clazz, 1024);
+	String msg = new String(data, "ISO8859-1");
 ```
 
 
@@ -77,11 +78,11 @@ public class TsRpcHead {
 
 
 ```
-	ServiceInfo clazz = new TbaUtil<ServiceInfo>().Deserialize(msg, ServiceInfo.class);
+	ServiceInfo clazz = new TbaUtil<ServiceInfo>().Deserialize(msg.getBytes("ISO8859-1"), ServiceInfo.class);
 ```
 
 
-#### 网络字节序列化(encode)
+#### 网络传输（发送）字节序列化(encode)
 
 ```
 	void channelRead(ChannelHandlerContext ctx, Object msg) {
@@ -133,7 +134,7 @@ public class TsRpcHead {
 }
 ```
 
-#### 网络字节反序列化(decode)
+#### 网络传输（接受）字节反序列化(decode)
 
 ```
 public class ThriftBinaryProtocolDecoder extends ByteToMessageDecoder {
