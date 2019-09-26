@@ -51,6 +51,11 @@ public class TsRpcByteBuffer {
 		System.arraycopy(buf, 0, buffer, 0, len);
 	}
 
+	public void copy(byte [] buf) {
+		System.arraycopy(buf, 0, buffer, writebufferEnd, buf.length);
+		writebufferEnd += buf.length;
+	}
+
 	public TsRpcByteBuffer(TsRpcByteBuffer buff, int offset){
 		bufferSize = buff.Length() - offset;
 		buffer = new byte[bufferSize];
