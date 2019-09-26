@@ -6,6 +6,9 @@ public enum ErrorType {
     SERIALIZE_EXCEPTION("0001", "序列化失败"),
     DESERIALIZE_EXCEPTION("0002", "反序列化失败"),
     WRITE_BUFFER_OUT_OF_RANGE_EXCEPTION("0003", "写入缓存越界"),
+    INPUT_PARAMETER_EMPTY("0003", "输入参数为空"),
+
+
     UNEXPECTED_EXCEPTION("1000", "未知异常"),
 
     ;

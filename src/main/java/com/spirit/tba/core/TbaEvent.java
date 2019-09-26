@@ -1,19 +1,25 @@
 package com.spirit.tba.core;
 
 
-public class TsEvent {
+public class TbaEvent {
 
     private TsRpcHead head;
     private Object body;
-    private Integer len;
+    private Integer length;
+    private Boolean isEncrypt;
 
-    public TsEvent(TsRpcHead head, Object body, int len) {
+    public TbaEvent(TsRpcHead head, Object body, int len, boolean encrypt) {
         this.head = head;
         this.body = body;
-        this.len = len;
+        this.length = len;
+        this.isEncrypt = encrypt;
     }
 
-    public TsEvent(TsRpcHead head, Object body) {
+    public Boolean isEncrypt() {
+        return isEncrypt;
+    }
+
+    public TbaEvent(TsRpcHead head, Object body) {
         this.head = head;
         this.body = body;
     }
@@ -34,11 +40,11 @@ public class TsEvent {
         this.body = body;
     }
 
-    public Integer getLen() {
-        return len;
+    public Integer getLength() {
+        return length;
     }
 
-    public void setLen(Integer len) {
-        this.len = len;
+    public void setLength(Integer length) {
+        this.length = length;
     }
 }
