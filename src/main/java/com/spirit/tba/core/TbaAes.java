@@ -91,7 +91,7 @@ public class TbaAes {
         return new SecretKeySpec(secretKey.getEncoded(), KEY_ALGORITHM);
     }
 
-    public static String AESEncode(String encodeRules, String content) {
+    public static String encode(String content, String encodeRules) throws TbaException {
         try {
             byte[] rawKey = encodeRules.getBytes();
             SecretKeySpec skeySpec = new SecretKeySpec(rawKey, "AES");
@@ -105,12 +105,11 @@ public class TbaAes {
                 | IllegalBlockSizeException
                 | BadPaddingException
                 e) {
-            e.printStackTrace();
+            throw new TbaException(UNEXPECTED_EXCEPTION.SetText(e.getMessage()));
         }
-        return null;
     }
 
-    public static String AESDncode(String encodeRules, String content) {
+    public static String decode(String content, String encodeRules) throws TbaException {
         try {
             byte[] rawKey = encodeRules.getBytes();
             SecretKeySpec skeySpec = new SecretKeySpec(rawKey, "AES");
@@ -125,9 +124,8 @@ public class TbaAes {
                 | IllegalBlockSizeException
                 | BadPaddingException
                 e) {
-            e.printStackTrace();
+            throw new TbaException(UNEXPECTED_EXCEPTION.SetText(e.getMessage()));
         }
-        return null;
     }
 
 }
