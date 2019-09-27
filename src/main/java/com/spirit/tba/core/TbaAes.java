@@ -91,9 +91,10 @@ public class TbaAes {
         return new SecretKeySpec(secretKey.getEncoded(), KEY_ALGORITHM);
     }
 
-    public static String encode(String content, String encodeRules) throws TbaException {
+    public static String encode(String content, String key) throws TbaException {
         try {
-            byte[] rawKey = encodeRules.getBytes();
+            String tmp = TbaMd5.md5Hex(key).substring(0, 16);
+            byte[] rawKey = tmp.getBytes();
             SecretKeySpec skeySpec = new SecretKeySpec(rawKey, "AES");
             Cipher cipher = Cipher.getInstance("AES");
             cipher.init(Cipher.ENCRYPT_MODE, skeySpec);
@@ -109,9 +110,10 @@ public class TbaAes {
         }
     }
 
-    public static String decode(String content, String encodeRules) throws TbaException {
+    public static String decode(String content, String key) throws TbaException {
         try {
-            byte[] rawKey = encodeRules.getBytes();
+            String tmp = TbaMd5.md5Hex(key).substring(0, 16);
+            byte[] rawKey = tmp.getBytes();
             SecretKeySpec skeySpec = new SecretKeySpec(rawKey, "AES");
             Cipher cipher = Cipher.getInstance("AES");
             cipher.init(Cipher.DECRYPT_MODE, skeySpec);
