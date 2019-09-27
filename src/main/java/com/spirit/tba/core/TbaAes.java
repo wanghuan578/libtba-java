@@ -22,31 +22,57 @@ public class TbaAes {
     private static final String DEFAULT_CIPHER_ALGORITHM = "AES/ECB/PKCS5Padding";
 
     public static String encrypt(String content, String key) throws TbaException {
-        if (StringUtils.isAnyEmpty(content, key)) {
-            throw new TbaException(INPUT_PARAMETER_EMPTY);
-        }
+
+//        if (StringUtils.isEmpty(content)) {
+//            throw new TbaException(INPUT_PARAMETER_EMPTY);
+//        }
+//
+//        if (StringUtils.isEmpty(key)) {
+//            throw new TbaException(INPUT_PARAMETER_EMPTY);
+//        }
+
         try {
             Cipher cipher = Cipher.getInstance(DEFAULT_CIPHER_ALGORITHM);
             byte[] byteContent = content.getBytes(CHAR_SET);
             cipher.init(Cipher.ENCRYPT_MODE, getSecretKey(key));
             byte[] encryptByte = cipher.doFinal(byteContent);
+            System.out.println("encryptByte len: " + encryptByte.length);
             return Base64.encodeBase64String(encryptByte);
         } catch (Exception e) {
-            throw new TbaException(UNEXPECTED_EXCEPTION);
+            throw new TbaException(UNEXPECTED_EXCEPTION.SetText(e.getMessage()));
         }
     }
 
     public static String decrypt(String encryptContent, String key) throws TbaException {
-        if (StringUtils.isAnyEmpty(encryptContent, key)) {
-            throw new TbaException(INPUT_PARAMETER_EMPTY);
-        }
+//        if (StringUtils.isEmpty(encryptContent)) {
+//            throw new TbaException(INPUT_PARAMETER_EMPTY);
+//        }
+//
+//        if (StringUtils.isEmpty(key)) {
+//            throw new TbaException(INPUT_PARAMETER_EMPTY);
+//        }
+
         try {
             Cipher cipher = Cipher.getInstance(DEFAULT_CIPHER_ALGORITHM);
             cipher.init(Cipher.DECRYPT_MODE, getSecretKey(key));
-            byte[] result = cipher.doFinal(Base64.decodeBase64(encryptContent));
+            byte[] b64 = Base64.decodeBase64(encryptContent);
+            byte[] result = cipher.doFinal(b64);
             return new String(result, CHAR_SET);
         } catch (Exception e) {
-            throw new TbaException(UNEXPECTED_EXCEPTION);
+            throw new TbaException(UNEXPECTED_EXCEPTION.SetText(e.getMessage()));
+        }
+    }
+
+    public static String decryptEx(String encryptContent, String key) throws TbaException {
+
+        try {
+            Cipher cipher = Cipher.getInstance("RSA/None/PKCS1Padding");
+            cipher.init(Cipher.DECRYPT_MODE, getSecretKey(key));
+            byte[] b64 = Base64.decodeBase64(encryptContent);
+            byte[] result = cipher.doFinal(b64);
+            return new String(result, CHAR_SET);
+        } catch (Exception e) {
+            throw new TbaException(UNEXPECTED_EXCEPTION.SetText(e.getMessage()));
         }
     }
 
