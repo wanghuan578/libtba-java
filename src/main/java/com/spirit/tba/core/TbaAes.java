@@ -87,7 +87,7 @@ public class TbaAes {
         KeyGenerator keyGenerator = KeyGenerator.getInstance(KEY_ALGORITHM);
         keyGenerator.init(SECRET_KEY_LENGTH, new SecureRandom(key.getBytes()));
         SecretKey secretKey = keyGenerator.generateKey();
-        System.out.println("secretKey:" + secretKey);
+        System.out.println("secretKey:" + secretKey.toString());
         return new SecretKeySpec(secretKey.getEncoded(), KEY_ALGORITHM);
     }
 }
