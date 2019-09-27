@@ -2,16 +2,15 @@ package com.spirit.tba.core;
 
 import com.spirit.tba.Exception.TbaException;
 import org.apache.commons.codec.binary.Base64;
-import org.apache.commons.lang3.StringUtils;
-import javax.crypto.Cipher;
-import javax.crypto.KeyGenerator;
-import javax.crypto.SecretKey;
+
+import javax.crypto.*;
 import javax.crypto.spec.SecretKeySpec;
+import java.io.IOException;
+import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
-
-import static com.spirit.tba.Exception.ErrorType.INPUT_PARAMETER_EMPTY;
 import static com.spirit.tba.Exception.ErrorType.UNEXPECTED_EXCEPTION;
+import static java.security.spec.PSSParameterSpec.DEFAULT;
 
 
 public class TbaAes {
@@ -91,4 +90,44 @@ public class TbaAes {
         //System.out.println("secretKey:" + secretKey.toString());
         return new SecretKeySpec(secretKey.getEncoded(), KEY_ALGORITHM);
     }
+
+    public static String AESEncode(String encodeRules, String content) {
+        try {
+            byte[] rawKey = encodeRules.getBytes();
+            SecretKeySpec skeySpec = new SecretKeySpec(rawKey, "AES");
+            Cipher cipher = Cipher.getInstance("AES");
+            cipher.init(Cipher.ENCRYPT_MODE, skeySpec);
+            byte[] encrypted = cipher.doFinal(content.getBytes());
+            return Base64.encodeBase64String(encrypted);
+        } catch (NoSuchAlgorithmException
+                | NoSuchPaddingException
+                | InvalidKeyException
+                | IllegalBlockSizeException
+                | BadPaddingException
+                e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static String AESDncode(String encodeRules, String content) {
+        try {
+            byte[] rawKey = encodeRules.getBytes();
+            SecretKeySpec skeySpec = new SecretKeySpec(rawKey, "AES");
+            Cipher cipher = Cipher.getInstance("AES");
+            cipher.init(Cipher.DECRYPT_MODE, skeySpec);
+            byte[] decrypted = cipher.doFinal(Base64.decodeBase64(content));
+            return new String(decrypted, "UTF-8");
+        } catch (NoSuchAlgorithmException
+                | NoSuchPaddingException
+                | InvalidKeyException
+                | IOException
+                | IllegalBlockSizeException
+                | BadPaddingException
+                e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 }
