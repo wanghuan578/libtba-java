@@ -56,6 +56,10 @@ public class TbaAes {
             Cipher cipher = Cipher.getInstance(DEFAULT_CIPHER_ALGORITHM);
             cipher.init(Cipher.DECRYPT_MODE, getSecretKey(key));
             byte[] b64 = Base64.decodeBase64(encryptContent);
+            for (int i = 0; i < b64.length; i++) {
+                System.out.println(b64[i]);
+            }
+            System.out.println("decrypt byte len: " + b64.length);
             byte[] result = cipher.doFinal(b64);
             return new String(result, CHAR_SET);
         } catch (Exception e) {
