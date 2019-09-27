@@ -36,6 +36,9 @@ public class TbaAes {
             byte[] byteContent = content.getBytes(CHAR_SET);
             cipher.init(Cipher.ENCRYPT_MODE, getSecretKey(key));
             byte[] encryptByte = cipher.doFinal(byteContent);
+            for (int i = 0; i < encryptByte.length; i++) {
+                System.out.println(encryptByte[i]);
+            }
             System.out.println("encryptByte len: " + encryptByte.length);
             return Base64.encodeBase64String(encryptByte);
         } catch (Exception e) {
