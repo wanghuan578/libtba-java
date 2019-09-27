@@ -84,10 +84,11 @@ public class TbaAes {
     }
 
     private static SecretKeySpec getSecretKey(final String key) throws NoSuchAlgorithmException {
+        System.out.println("AES key: " + key);
         KeyGenerator keyGenerator = KeyGenerator.getInstance(KEY_ALGORITHM);
         keyGenerator.init(SECRET_KEY_LENGTH, new SecureRandom(key.getBytes()));
         SecretKey secretKey = keyGenerator.generateKey();
-        System.out.println("secretKey:" + secretKey.toString());
+        //System.out.println("secretKey:" + secretKey.toString());
         return new SecretKeySpec(secretKey.getEncoded(), KEY_ALGORITHM);
     }
 }
