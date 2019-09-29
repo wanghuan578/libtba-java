@@ -101,7 +101,8 @@ public class TbaAes {
             Cipher cipher = Cipher.getInstance("AES");
             cipher.init(Cipher.ENCRYPT_MODE, skeySpec);
             byte[] encrypted = cipher.doFinal(content.getBytes());
-            return Base64.encodeBase64String(encrypted);
+            return TbaBase64.encode(encrypted);
+            //return Base64.encodeBase64String(encrypted);
         } catch (NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeyException | IllegalBlockSizeException | BadPaddingException
                 e) {
             throw new TbaException(UNEXPECTED_EXCEPTION.SetText(e.getMessage()));
@@ -116,7 +117,8 @@ public class TbaAes {
             SecretKeySpec skeySpec = new SecretKeySpec(rawKey, "AES");
             Cipher cipher = Cipher.getInstance("AES");
             cipher.init(Cipher.DECRYPT_MODE, skeySpec);
-            byte[] decrypted = cipher.doFinal(Base64.decodeBase64(content));
+            byte[] decrypted = cipher.doFinal(TbaBase64.decode(content));
+            //byte[] decrypted = cipher.doFinal(Base64.decodeBase64(content));
             return new String(decrypted, "UTF-8");
         } catch (NoSuchAlgorithmException
                 | NoSuchPaddingException
