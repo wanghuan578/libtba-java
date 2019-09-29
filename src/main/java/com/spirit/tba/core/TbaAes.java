@@ -6,6 +6,7 @@ import org.apache.commons.codec.binary.Base64;
 import javax.crypto.*;
 import javax.crypto.spec.SecretKeySpec;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
@@ -93,18 +94,15 @@ public class TbaAes {
 
     public static String encode(String content, String key) throws TbaException {
         try {
-            String tmp = TbaMd5.md5Hex(key).substring(0, 16);
+            String checksum = TbaMd5.md5Hex(key);
+            String tmp = checksum.substring(0, 16);
             byte[] rawKey = tmp.getBytes();
             SecretKeySpec skeySpec = new SecretKeySpec(rawKey, "AES");
             Cipher cipher = Cipher.getInstance("AES");
             cipher.init(Cipher.ENCRYPT_MODE, skeySpec);
             byte[] encrypted = cipher.doFinal(content.getBytes());
             return Base64.encodeBase64String(encrypted);
-        } catch (NoSuchAlgorithmException
-                | NoSuchPaddingException
-                | InvalidKeyException
-                | IllegalBlockSizeException
-                | BadPaddingException
+        } catch (NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeyException | IllegalBlockSizeException | BadPaddingException
                 e) {
             throw new TbaException(UNEXPECTED_EXCEPTION.SetText(e.getMessage()));
         }
@@ -112,7 +110,8 @@ public class TbaAes {
 
     public static String decode(String content, String key) throws TbaException {
         try {
-            String tmp = TbaMd5.md5Hex(key).substring(0, 16);
+            String checksum = TbaMd5.md5Hex(key);
+            String tmp = checksum.substring(0, 16);
             byte[] rawKey = tmp.getBytes();
             SecretKeySpec skeySpec = new SecretKeySpec(rawKey, "AES");
             Cipher cipher = Cipher.getInstance("AES");
