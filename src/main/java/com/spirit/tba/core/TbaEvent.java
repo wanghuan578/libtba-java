@@ -1,7 +1,7 @@
 package com.spirit.tba.core;
 
 
-public class TbaEvent {
+public class TbaEvent extends TbaEventBase {
 
     private TsRpcHead head;
     private Object body;

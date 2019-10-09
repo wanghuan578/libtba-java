@@ -15,18 +15,18 @@ public class TbaToolsKit<TEvent extends TBase> {
         return builder.Serialize().OutStream().GetBytes();
     }
 
-    public String serializeAes(TEvent ev, String key, int buf_size) throws TbaException, UnsupportedEncodingException {
-        byte[] original = serialize(ev, buf_size);
-        return TbaAes.encrypt(new String(original, "ISO8859-1"), key);
-    }
+//    public String serializeAes(TEvent ev, String key, int buf_size) throws TbaException, UnsupportedEncodingException {
+//        byte[] original = serialize(ev, buf_size);
+//        return TbaAes.encrypt(new String(original, "ISO8859-1"), key);
+//    }
 
     public TEvent deserialize(byte[] msg, Class<TEvent> clazz) throws IllegalAccessException, TbaException, InstantiationException {
         TsRpcEventParser<TEvent> parser = new TsRpcEventParser<>(msg, msg.length);
         return parser.ToEvent(clazz, 0);
     }
 
-    public TEvent deserializeAes(String msg, String key, Class<TEvent> clazz) throws IllegalAccessException, TbaException, InstantiationException, UnsupportedEncodingException {
-        String original = TbaAes.decrypt(msg, key);
-        return deserialize(original.getBytes("ISO8859-1"), clazz);
-    }
+//    public TEvent deserializeAes(String msg, String key, Class<TEvent> clazz) throws IllegalAccessException, TbaException, InstantiationException, UnsupportedEncodingException {
+//        String original = TbaAes.decrypt(msg, key);
+//        return deserialize(original.getBytes("ISO8859-1"), clazz);
+//    }
 }
