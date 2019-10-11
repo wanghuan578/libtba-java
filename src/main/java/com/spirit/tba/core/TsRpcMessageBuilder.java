@@ -2,6 +2,7 @@ package com.spirit.tba.core;
 
 
 import com.spirit.tba.Exception.TbaException;
+import com.spirit.tba.tools.TbaHeadUtil;
 import org.apache.thrift.TBase;
 import org.apache.thrift.protocol.TProtocol;
 import static com.spirit.tba.Exception.ErrorType.*;
@@ -32,7 +33,8 @@ public class TsRpcMessageBuilder<TMessageBody extends TBase>{
 	public int Encode() throws TbaException {
 		try {
 			body_.write(protocol);
-			return SerializeHead(head_);
+			return TbaHeadUtil.build_all(out_stream, head_);
+			//return SerializeHead(head_);
 		}
 		catch (Exception e) {
 			throw new TbaException(UNEXPECTED_EXCEPTION.SetText(e.getMessage()));
@@ -49,26 +51,26 @@ public class TsRpcMessageBuilder<TMessageBody extends TBase>{
 		}
 	}
 
-	public int SerializeHead(TsRpcHead head) throws TbaException {
-
-		int end = out_stream.Length();
-
-		out_stream.WriteBufferBegin(0);
-		out_stream.WriteI32(end);
-		out_stream.WriteI16(head.GetFlag());
-		out_stream.WriteI16(head.GetType());
-		out_stream.WriteI32(head.GetSequence());
-		out_stream.WriteI32(head.GetSource());
-		out_stream.WriteI32(head.GetDestination());
-		out_stream.WriteI32(head.GetCheckSum());
-		out_stream.WriteI32(head.GetAttach1());
-		out_stream.WriteI32(head.GetAttach2());
-		out_stream.WriteI32(head.GetAttach3());
-		out_stream.WriteI32(head.GetAttach4());
-		out_stream.WriteBufferBegin(end);
-
-		return end;
-	}
+//	public int SerializeHead(TsRpcHead head) throws TbaException {
+//
+//		int end = out_stream.Length();
+//
+//		out_stream.WriteBufferBegin(0);
+//		out_stream.WriteI32(end);
+//		out_stream.WriteI16(head.GetFlag());
+//		out_stream.WriteI16(head.GetType());
+//		out_stream.WriteI32(head.GetSequence());
+//		out_stream.WriteI32(head.GetSource());
+//		out_stream.WriteI32(head.GetDestination());
+//		out_stream.WriteI32(head.GetCheckSum());
+//		out_stream.WriteI32(head.GetAttach1());
+//		out_stream.WriteI32(head.GetAttach2());
+//		out_stream.WriteI32(head.GetAttach3());
+//		out_stream.WriteI32(head.GetAttach4());
+//		out_stream.WriteBufferBegin(end);
+//
+//		return end;
+//	}
 
 	public TsRpcByteBuffer OutStream() {
 		return out_stream;
