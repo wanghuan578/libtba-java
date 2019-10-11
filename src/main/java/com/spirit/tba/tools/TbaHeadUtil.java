@@ -1,7 +1,7 @@
 package com.spirit.tba.tools;
 
 import com.spirit.tba.Exception.TbaException;
-import com.spirit.tba.core.TsHeadMagic;
+import com.spirit.tba.core.TsMagic;
 import com.spirit.tba.core.TsRpcByteBuffer;
 import com.spirit.tba.core.TsRpcHead;
 import static com.spirit.tba.Exception.ErrorType.COMMON_HEAD_LENGTH_INVALID;
@@ -11,11 +11,11 @@ public class TbaHeadUtil {
 
     public static final int HEAD_SIZE = 40;
 
-    public static TsHeadMagic preParser(byte[] data) throws TbaException {
-        if (data.length != TsHeadMagic.MAGIC_OFFSET) {
+    public static TsMagic preParser(byte[] data) throws TbaException {
+        if (data.length != TsMagic.MAGIC_OFFSET) {
             throw new TbaException(SHORT_HEAD_LENGTH_INVALID);
         }
-        TsRpcByteBuffer bb = new TsRpcByteBuffer(data, TsHeadMagic.MAGIC_OFFSET);
+        TsRpcByteBuffer bb = new TsRpcByteBuffer(data, TsMagic.MAGIC_OFFSET);
         return preParser(bb);
     }
 
@@ -27,12 +27,11 @@ public class TbaHeadUtil {
         return parser(bb);
     }
 
-    public static TsHeadMagic preParser(TsRpcByteBuffer buff) {
-        TsHeadMagic head = new TsHeadMagic();
-        head.setLength(buff.ReadI32());
-        head.setFlag(buff.ReadI16());
-        head.setType(buff.ReadI16());
-        return head;
+    public static TsMagic preParser(TsRpcByteBuffer buff) {
+        TsMagic magic = new TsMagic();
+        magic.setLength(buff.ReadI32());
+        magic.setFlag(buff.ReadI16());
+        return magic;
     }
 
     public static TsRpcHead parser(TsRpcByteBuffer buff) {
