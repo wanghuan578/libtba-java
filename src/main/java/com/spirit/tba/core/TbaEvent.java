@@ -6,17 +6,17 @@ public class TbaEvent extends TbaEventBase {
     private TsRpcHead head;
     private Object body;
     private Integer length;
-    private Boolean isEncrypt;
+    private Short encryptType;
 
-    public TbaEvent(TsRpcHead head, Object body, int len, boolean encrypt) {
+    public TbaEvent(TsRpcHead head, Object body, int len, Short encrypt) {
         this.head = head;
         this.body = body;
         this.length = len;
-        this.isEncrypt = encrypt;
+        this.encryptType = encrypt;
     }
 
-    public Boolean isEncrypt() {
-        return isEncrypt;
+    public Short getEncryptType() {
+        return encryptType;
     }
 
     public TbaEvent(TsRpcHead head, Object body) {
