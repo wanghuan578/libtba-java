@@ -1,6 +1,7 @@
 package com.spirit.tba.core;
 
 import com.spirit.tba.Exception.TbaException;
+import com.spirit.tba.tools.TbaHeadUtil;
 import org.apache.thrift.TBase;
 import org.apache.thrift.TException;
 import org.apache.thrift.protocol.TProtocol;
@@ -26,7 +27,7 @@ public class TsRpcEventParser<TMessageBody extends TBase> {
 
 	public TMessageBody Decode(Class<TMessageBody> clazz) throws TbaException, IllegalAccessException, InstantiationException {
 
-		TProtocol protocol = new TsRpcThriftBinaryProtocol(in_stream, TsRpcHead.HEAD_SIZE, (in_stream.Length() - TsRpcHead.HEAD_SIZE));
+		TProtocol protocol = new TsRpcThriftBinaryProtocol(in_stream, TbaHeadUtil.SIZE, (in_stream.Length() - TbaHeadUtil.SIZE));
 
 		body_ = clazz.newInstance();
 

@@ -1,8 +1,6 @@
 package com.spirit.tba.core;
 
 public class TsRpcHead {
-
-	public static final int HEAD_SIZE = 40;
 	
 	private int    	length;            
 	private short  	flag;              

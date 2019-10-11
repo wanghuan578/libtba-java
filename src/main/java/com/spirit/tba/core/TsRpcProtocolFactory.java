@@ -1,6 +1,7 @@
 package com.spirit.tba.core;
 
 import com.spirit.tba.Exception.TbaException;
+import com.spirit.tba.tools.TbaHeadUtil;
 import org.apache.thrift.TBase;
 
 
@@ -10,7 +11,7 @@ public class TsRpcProtocolFactory <TMessageBody extends TBase> {
 	private TsRpcMessageBuilder message_builder;
 
 	public TsRpcProtocolFactory (final TMessageBody body, final TsRpcHead head, int buff_size) {
-		message_builder = new TsRpcMessageBuilder(body, head, buff_size, TsRpcHead.HEAD_SIZE);
+		message_builder = new TsRpcMessageBuilder(body, head, buff_size, TbaHeadUtil.SIZE);
 	}
 
 	public TsRpcProtocolFactory(final TsRpcByteBuffer buff){

@@ -6,6 +6,8 @@ import com.spirit.tba.core.TsRpcHead;
 
 public class TbaHeadUtil {
 
+    public static final int SIZE = 40;
+
     public static void build(TsRpcByteBuffer protcol, TsRpcHead head, int messageLength) throws TbaException {
         protcol.WriteBufferBegin(0);
         protcol.WriteI32(messageLength);
