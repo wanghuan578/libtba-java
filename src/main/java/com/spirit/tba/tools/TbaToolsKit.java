@@ -29,4 +29,16 @@ public class TbaToolsKit<TEvent extends TBase> {
 //        String original = TbaAes.decrypt(msg, key);
 //        return deserialize(original.getBytes("ISO8859-1"), clazz);
 //    }
+
+    public static int [] long2int(Long in) {
+        int [] out = new int[2];
+        out[0] = (int) (in & 0x000000ffffffffL);
+        out[1] = (int) (in >> 32);
+        return out;
+    }
+
+    public static long int2long(int [] in) {
+        return in[0] | in[1] << 32;
+    }
+
 }
