@@ -177,8 +177,7 @@ public class TsRpcByteBuffer {
 			if(null == dat){
 				WriteI32(0);
 			}
-			else
-			{
+			else {
 				WriteI32(dat.length);
 				System.arraycopy(dat, 0, buffer, writebufferEnd,  dat.length);
 				writebufferEnd += dat.length;

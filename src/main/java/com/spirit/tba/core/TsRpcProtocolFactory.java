@@ -11,7 +11,7 @@ public class TsRpcProtocolFactory <TMessageBody extends TBase> {
 	private TsRpcMessageBuilder message_builder;
 
 	public TsRpcProtocolFactory (final TMessageBody body, final TsRpcHead head, int buff_size) {
-		message_builder = new TsRpcMessageBuilder(body, head, buff_size, TbaHeadUtil.SIZE);
+		message_builder = new TsRpcMessageBuilder(body, head, buff_size, TbaHeadUtil.HEAD_SIZE);
 	}
 
 	public TsRpcProtocolFactory(final TsRpcByteBuffer buff){
