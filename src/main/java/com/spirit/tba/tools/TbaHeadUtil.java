@@ -52,21 +52,21 @@ public class TbaHeadUtil {
 
     public static void build(TsRpcByteBuffer protcol, TsRpcHead head, int messageLength) throws TbaException {
         protcol.WriteBufferBegin(0);
-        protcol.WriteI32(messageLength);
-        protcol.WriteI16(head.GetFlag());
-        protcol.WriteI16(head.GetType());
-        protcol.WriteI32(head.GetSequence());
-        protcol.WriteI32(head.GetSource());
-        protcol.WriteI32(head.GetDestination());
-        protcol.WriteI32(head.GetCheckSum());
-        protcol.WriteI32(head.GetAttach1());
-        protcol.WriteI32(head.GetAttach2());
-        protcol.WriteI32(head.GetAttach3());
-        protcol.WriteI32(head.GetAttach4());
+        protcol.writeI32(messageLength);
+        protcol.writeI16(head.GetFlag());
+        protcol.writeI16(head.GetType());
+        protcol.writeI32(head.GetSequence());
+        protcol.writeI32(head.GetSource());
+        protcol.writeI32(head.GetDestination());
+        protcol.writeI32(head.GetCheckSum());
+        protcol.writeI32(head.GetAttach1());
+        protcol.writeI32(head.GetAttach2());
+        protcol.writeI32(head.GetAttach3());
+        protcol.writeI32(head.GetAttach4());
     }
 
     public static int build_all(TsRpcByteBuffer protcol, TsRpcHead head) throws TbaException {
-        int end = protcol.Length();
+        int end = protcol.length();
         build(protcol, head, end);
         protcol.WriteBufferBegin(end);
         return end;

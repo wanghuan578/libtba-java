@@ -47,32 +47,32 @@ public class TsRpcByteBuffer {
 		return clone;
 	}
 
-	public void copy(byte [] buf, int len) {
+	private void copy(byte [] buf, int len) {
 		System.arraycopy(buf, 0, buffer, 0, len);
 	}
 
-	public void copy(byte [] buf) {
+	public void append(byte [] buf) {
 		System.arraycopy(buf, 0, buffer, writebufferEnd, buf.length);
 		writebufferEnd += buf.length;
 	}
 
 	public TsRpcByteBuffer(TsRpcByteBuffer buff, int offset){
-		bufferSize = buff.Length() - offset;
+		bufferSize = buff.length() - offset;
 		buffer = new byte[bufferSize];
-		System.arraycopy(buff.GetBytes(), offset, buffer, 0, bufferSize);
+		System.arraycopy(buff.toBytes(), offset, buffer, 0, bufferSize);
 	}
 	
 	public TsRpcByteBuffer(TsRpcByteBuffer buff){
-		writebufferEnd = buff.Length();
+		writebufferEnd = buff.length();
 		buffer = new byte[writebufferEnd];
-		buffer = buff.GetBytes();
+		buffer = buff.toBytes();
 	}
 	
-	public int Length(){
+	public int length(){
 		return writebufferEnd;
 	}
 
-	public byte[] GetBytes(){
+	public byte[] toBytes(){
 		byte [] dest = new byte [writebufferEnd];
 		System.arraycopy(buffer, 0, dest, 0, writebufferEnd);
 		return dest;
@@ -108,7 +108,7 @@ public class TsRpcByteBuffer {
 		WriteByte(b ? (byte)1 : (byte)0);
 	}
 	
-	public boolean WriteI16(short i16) throws TbaException {
+	public boolean writeI16(short i16) throws TbaException {
 		
 		try {
 			buffer[writebufferEnd++] = (byte) (i16>>8 & 0xff);
@@ -122,7 +122,7 @@ public class TsRpcByteBuffer {
 		return true;
 	}
 
-	public boolean WriteI32(int i32) throws TbaException {
+	public boolean writeI32(int i32) throws TbaException {
 		
 		try
 		{
@@ -139,7 +139,7 @@ public class TsRpcByteBuffer {
 		return true;
 	}
 	
-	public boolean WriteI64(long i64) throws TbaException {
+	public boolean writeI64(long i64) throws TbaException {
 		
 		try
 		{
@@ -162,7 +162,7 @@ public class TsRpcByteBuffer {
 	}
 	
 	public boolean WriteDouble(double d64) throws TbaException {
-		WriteI64(Double.doubleToLongBits(d64));
+		writeI64(Double.doubleToLongBits(d64));
 		return true;
 	}
 	
@@ -175,10 +175,10 @@ public class TsRpcByteBuffer {
 			dat = str.getBytes("UTF-8");
 			
 			if(null == dat){
-				WriteI32(0);
+				writeI32(0);
 			}
 			else {
-				WriteI32(dat.length);
+				writeI32(dat.length);
 				System.arraycopy(dat, 0, buffer, writebufferEnd,  dat.length);
 				writebufferEnd += dat.length;
 			}
@@ -194,7 +194,7 @@ public class TsRpcByteBuffer {
 	public boolean WriteBinary(ByteBuffer buff) throws TbaException {
 		
 		int length = buff.limit() - buff.position() - buff.arrayOffset();
-		WriteI32(length);
+		writeI32(length);
 		System.arraycopy(buff.array(), (buff.position() + buff.arrayOffset()), buffer, writebufferEnd, length);
 		writebufferEnd += length;
 		
@@ -294,8 +294,8 @@ public class TsRpcByteBuffer {
 	}
 	
 	public void Cat(TsRpcByteBuffer in){
-		System.arraycopy(in.GetBytes(), 0, buffer, writebufferEnd,  in.Length());
-		writebufferEnd += in.Length();
+		System.arraycopy(in.toBytes(), 0, buffer, writebufferEnd,  in.length());
+		writebufferEnd += in.length();
 	}
 	
 }

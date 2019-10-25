@@ -127,7 +127,7 @@ public class TsRpcThriftBinaryProtocol extends TProtocol {
 	@Override
 	public void writeI16(short i16) throws TException {
 		try {
-			writeBuff.WriteI16(i16);
+			writeBuff.writeI16(i16);
 		} catch (TbaException e) {
 			e.printStackTrace();
 		}
@@ -137,7 +137,7 @@ public class TsRpcThriftBinaryProtocol extends TProtocol {
 	public void writeI32(int i32) throws TException {
 
 		try {
-			writeBuff.WriteI32(i32);
+			writeBuff.writeI32(i32);
 		} catch (TbaException e) {
 			e.printStackTrace();
 		}
@@ -146,7 +146,7 @@ public class TsRpcThriftBinaryProtocol extends TProtocol {
 	@Override
 	public void writeI64(long i64) throws TException {
 		try {
-			writeBuff.WriteI64(i64);
+			writeBuff.writeI64(i64);
 		} catch (TbaException e) {
 			e.printStackTrace();
 		}
@@ -182,7 +182,7 @@ public class TsRpcThriftBinaryProtocol extends TProtocol {
 
 	@Override
 	public TMessage readMessageBegin() throws TException {
-		 return new TMessage(new String(readBuff.GetBytes()), readByte(), readI32());
+		 return new TMessage(new String(readBuff.toBytes()), readByte(), readI32());
 	}
 
 	@Override

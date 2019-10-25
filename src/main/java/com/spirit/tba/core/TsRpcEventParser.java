@@ -27,7 +27,7 @@ public class TsRpcEventParser<TMessageBody extends TBase> {
 
 	public TMessageBody Decode(Class<TMessageBody> clazz) throws TbaException, IllegalAccessException, InstantiationException {
 
-		TProtocol protocol = new TsRpcThriftBinaryProtocol(in_stream, TbaHeadUtil.HEAD_SIZE, (in_stream.Length() - TbaHeadUtil.HEAD_SIZE));
+		TProtocol protocol = new TsRpcThriftBinaryProtocol(in_stream, TbaHeadUtil.HEAD_SIZE, (in_stream.length() - TbaHeadUtil.HEAD_SIZE));
 
 		body_ = clazz.newInstance();
 
@@ -41,7 +41,7 @@ public class TsRpcEventParser<TMessageBody extends TBase> {
 
 	public TMessageBody ToEvent(Class<TMessageBody> clazz, int offset) throws TbaException, IllegalAccessException, InstantiationException {
 
-		TProtocol protocol = new TsRpcThriftBinaryProtocol(in_stream, offset, (in_stream.Length() - offset));
+		TProtocol protocol = new TsRpcThriftBinaryProtocol(in_stream, offset, (in_stream.length() - offset));
 
 		body_ = clazz.newInstance();
 

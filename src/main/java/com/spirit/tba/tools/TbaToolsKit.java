@@ -12,7 +12,7 @@ public class TbaToolsKit<TEvent extends TBase> {
 
     public byte [] serialize(TEvent ev, int buf_size) throws TbaException {
         TsRpcMessageBuilder<TEvent> builder = new TsRpcMessageBuilder<TEvent>(ev, buf_size);
-        return builder.Serialize().OutStream().GetBytes();
+        return builder.Serialize().OutStream().toBytes();
     }
 
 //    public String serializeAes(TEvent ev, String key, int buf_size) throws TbaException, UnsupportedEncodingException {
