@@ -78,20 +78,20 @@ public class TsRpcByteBuffer {
 		return dest;
 	}
 
-	public void WriteBufferBegin(int pos){
+	public void writeBufferBegin(int pos){
 		writebufferEnd = pos;
 	}
 	
-	public void ReadBufferBegin(int pos){
+	public void readBufferBegin(int pos){
 		readbufferEnd = pos;
 	}
 	
-	public void SkipWriteBuffer(int offset){
+	public void skipWriteBuffer(int offset){
 		
 		writebufferEnd += offset;
 	}
 	
-	public void SkipReadBuffer(int offset){
+	private void skipReadBuffer(int offset){
 		readbufferEnd += offset;
 	}
 	
@@ -100,12 +100,12 @@ public class TsRpcByteBuffer {
 	}
 	
 	//Write Data
-	public void WriteByte(byte b){
+	public void writeByte(byte b){
 		buffer[writebufferEnd++] = b;
 	}
 	
-	public void WriteBool(boolean b){
-		WriteByte(b ? (byte)1 : (byte)0);
+	public void writeBool(boolean b){
+		writeByte(b ? (byte)1 : (byte)0);
 	}
 	
 	public boolean writeI16(short i16) throws TbaException {

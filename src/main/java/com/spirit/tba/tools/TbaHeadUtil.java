@@ -36,39 +36,39 @@ public class TbaHeadUtil {
 
     public static TsRpcHead parser(TsRpcByteBuffer buff) {
         TsRpcHead head = new TsRpcHead();
-        head.SetLength(buff.ReadI32());
-        head.SetFlag(buff.ReadI16());
-        head.SetType(buff.ReadI16());
-        head.SetSequence(buff.ReadI32());
-        head.SetSource(buff.ReadI32());
-        head.SetDestination(buff.ReadI32());
-        head.SetCheckSum(buff.ReadI32());
-        head.SetAttach1(buff.ReadI32());
-        head.SetAttach2(buff.ReadI32());
-        head.SetAttach3(buff.ReadI32());
-        head.SetAttach4(buff.ReadI32());
+        head.setLength(buff.ReadI32());
+        head.setFlag(buff.ReadI16());
+        head.setType(buff.ReadI16());
+        head.setSequence(buff.ReadI32());
+        head.setSource(buff.ReadI32());
+        head.setDestination(buff.ReadI32());
+        head.setChecksum(buff.ReadI32());
+        head.setAttachId1(buff.ReadI32());
+        head.setAttachId2(buff.ReadI32());
+        head.setAttachId3(buff.ReadI32());
+        head.setAttachId4(buff.ReadI32());
         return head;
     }
 
     public static void build(TsRpcByteBuffer protcol, TsRpcHead head, int messageLength) throws TbaException {
-        protcol.WriteBufferBegin(0);
+        protcol.writeBufferBegin(0);
         protcol.writeI32(messageLength);
-        protcol.writeI16(head.GetFlag());
-        protcol.writeI16(head.GetType());
-        protcol.writeI32(head.GetSequence());
-        protcol.writeI32(head.GetSource());
-        protcol.writeI32(head.GetDestination());
-        protcol.writeI32(head.GetCheckSum());
-        protcol.writeI32(head.GetAttach1());
-        protcol.writeI32(head.GetAttach2());
-        protcol.writeI32(head.GetAttach3());
-        protcol.writeI32(head.GetAttach4());
+        protcol.writeI16(head.getFlag());
+        protcol.writeI16(head.getType());
+        protcol.writeI32(head.getSequence());
+        protcol.writeI32(head.getSource());
+        protcol.writeI32(head.getDestination());
+        protcol.writeI32(head.getChecksum());
+        protcol.writeI32(head.getAttachId1());
+        protcol.writeI32(head.getAttachId2());
+        protcol.writeI32(head.getAttachId3());
+        protcol.writeI32(head.getAttachId4());
     }
 
     public static int build_all(TsRpcByteBuffer protcol, TsRpcHead head) throws TbaException {
         int end = protcol.length();
         build(protcol, head, end);
-        protcol.WriteBufferBegin(end);
+        protcol.writeBufferBegin(end);
         return end;
     }
 }

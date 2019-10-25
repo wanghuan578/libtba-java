@@ -28,7 +28,7 @@ public class TsRpcThriftBinaryProtocol extends TProtocol {
 	public TsRpcThriftBinaryProtocol(TsRpcByteBuffer out, int offset){
 		super(null);
 		writeBuff = out;
-		writeBuff.SkipWriteBuffer(offset);
+		writeBuff.skipWriteBuffer(offset);
 	}
 	
 	public TsRpcThriftBinaryProtocol(TsRpcByteBuffer in, int offset, int size){
@@ -116,12 +116,12 @@ public class TsRpcThriftBinaryProtocol extends TProtocol {
 	@Override
 	public void writeBool(boolean b) throws TException {
 
-		writeBuff.WriteBool(b);
+		writeBuff.writeBool(b);
 	}
 
 	@Override
 	public void writeByte(byte b) throws TException {
-		writeBuff.WriteByte(b);
+		writeBuff.writeByte(b);
 	}
 
 	@Override
