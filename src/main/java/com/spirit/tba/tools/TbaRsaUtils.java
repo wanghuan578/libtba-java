@@ -108,7 +108,7 @@ public class TbaRsaUtils {
      * @return
      * @throws Exception
      */
-    public static String sign(byte[] data, String privateKey) throws Exception {
+    public static String signature(byte[] data, String privateKey) throws Exception {
         byte[] keyBytes = TbaBase64Utils.decode(privateKey);
         PKCS8EncodedKeySpec pkcs8KeySpec = new PKCS8EncodedKeySpec(keyBytes);
         KeyFactory keyFactory = KeyFactory.getInstance(KEY_ALGORITHM);

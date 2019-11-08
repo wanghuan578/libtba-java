@@ -34,6 +34,9 @@ public class TbaAesUtils {
                 e) {
             throw new TbaException(UNEXPECTED_EXCEPTION.SetText(e.getMessage()));
         }
+        catch (Exception e) {
+            throw new TbaException(UNEXPECTED_EXCEPTION.SetText(e.getMessage()));
+        }
     }
 
     public static String decode(String content, String key) throws TbaException {
@@ -54,6 +57,9 @@ public class TbaAesUtils {
                 | IllegalBlockSizeException
                 | BadPaddingException
                 e) {
+            throw new TbaException(UNEXPECTED_EXCEPTION.SetText(e.getMessage()));
+        }
+        catch (Exception e) {
             throw new TbaException(UNEXPECTED_EXCEPTION.SetText(e.getMessage()));
         }
     }
