@@ -1,6 +1,10 @@
 package com.spirit.tba.core;
 
-
+/**
+ * @author wanghuan
+ * @Date 2013/11/08 11:38
+ * @licence all rights reserved
+ */
 import java.nio.ByteBuffer;
 import com.spirit.tba.Exception.TbaException;
 import org.apache.thrift.TException;
@@ -15,28 +19,28 @@ import org.apache.thrift.protocol.TType;
 import org.apache.thrift.transport.TTransport;
 
 
-public class TsRpcThriftBinaryProtocol extends TProtocol {
+public class TbaRpcThriftBinaryProtocol extends TProtocol {
 
 	private static final TStruct ANONYMOUS_STRUCT = new TStruct();
-	private TsRpcByteBuffer writeBuff = null;
-	private TsRpcByteBuffer readBuff = null;
+	private TbaRpcByteBuffer writeBuff = null;
+	private TbaRpcByteBuffer readBuff = null;
 	
-	public TsRpcThriftBinaryProtocol(){
+	public TbaRpcThriftBinaryProtocol(){
 		super(null);
 	}
 	
-	public TsRpcThriftBinaryProtocol(TsRpcByteBuffer out, int offset){
+	public TbaRpcThriftBinaryProtocol(TbaRpcByteBuffer out, int offset){
 		super(null);
 		writeBuff = out;
 		writeBuff.skipWriteBuffer(offset);
 	}
 	
-	public TsRpcThriftBinaryProtocol(TsRpcByteBuffer in, int offset, int size){
+	public TbaRpcThriftBinaryProtocol(TbaRpcByteBuffer in, int offset, int size){
 		super(null);
-		readBuff = new TsRpcByteBuffer(in, offset);
+		readBuff = new TbaRpcByteBuffer(in, offset);
 	}
 
-	protected TsRpcThriftBinaryProtocol(TTransport trans) {
+	protected TbaRpcThriftBinaryProtocol(TTransport trans) {
 		super(trans);
 	}
 

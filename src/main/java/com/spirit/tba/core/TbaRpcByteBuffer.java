@@ -1,5 +1,10 @@
 package com.spirit.tba.core;
 
+/**
+ * @author wanghuan
+ * @Date 2013/11/08 11:38
+ * @licence all rights reserved
+ */
 import java.io.UnsupportedEncodingException;
 import java.nio.ByteBuffer;
 import com.spirit.tba.Exception.TbaException;
@@ -7,23 +12,21 @@ import org.apache.thrift.TException;
 import static com.spirit.tba.Exception.ErrorType.WRITE_BUFFER_OUT_OF_RANGE_EXCEPTION;
 
 
-
-public class TsRpcByteBuffer {
+public class TbaRpcByteBuffer {
 	
 	private int bufferSize = 0;
 	private byte [] buffer = null;
 	private int writebufferEnd = 0;
 	private int readbufferEnd = 0;
-	//private String stringBuffer = null;
 	
-	public TsRpcByteBuffer(int len){
+	public TbaRpcByteBuffer(int len){
 		bufferSize = len;
 		writebufferEnd = 0;
 		readbufferEnd = 0;
 		buffer = new byte[bufferSize];
 	}
 	
-	public TsRpcByteBuffer(byte[] data, int len){
+	public TbaRpcByteBuffer(byte[] data, int len){
 		
 		if(null != data)
 		{
@@ -41,8 +44,8 @@ public class TsRpcByteBuffer {
 		System.arraycopy(buff, 0, buffer, writebufferEnd, len);
 	}
 
-	public TsRpcByteBuffer clone() {
-		TsRpcByteBuffer clone =  new TsRpcByteBuffer(writebufferEnd);
+	public TbaRpcByteBuffer clone() {
+		TbaRpcByteBuffer clone =  new TbaRpcByteBuffer(writebufferEnd);
 		clone.copy(buffer, writebufferEnd);
 		return clone;
 	}
@@ -56,13 +59,13 @@ public class TsRpcByteBuffer {
 		writebufferEnd += buf.length;
 	}
 
-	public TsRpcByteBuffer(TsRpcByteBuffer buff, int offset){
+	public TbaRpcByteBuffer(TbaRpcByteBuffer buff, int offset){
 		bufferSize = buff.length() - offset;
 		buffer = new byte[bufferSize];
 		System.arraycopy(buff.toBytes(), offset, buffer, 0, bufferSize);
 	}
 	
-	public TsRpcByteBuffer(TsRpcByteBuffer buff){
+	public TbaRpcByteBuffer(TbaRpcByteBuffer buff){
 		writebufferEnd = buff.length();
 		buffer = new byte[writebufferEnd];
 		buffer = buff.toBytes();
@@ -293,7 +296,7 @@ public class TsRpcByteBuffer {
 		return null;
 	}
 	
-	public void Cat(TsRpcByteBuffer in){
+	public void Cat(TbaRpcByteBuffer in){
 		System.arraycopy(in.toBytes(), 0, buffer, writebufferEnd,  in.length());
 		writebufferEnd += in.length();
 	}

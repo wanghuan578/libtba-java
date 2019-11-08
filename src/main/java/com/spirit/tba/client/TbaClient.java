@@ -1,6 +1,10 @@
 package com.spirit.tba.client;
 
-
+/**
+ * @author wanghuan
+ * @Date 2013/11/08 11:38
+ * @licence all rights reserved
+ */
 import com.spirit.tba.core.TbaEvent;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.*;
@@ -10,11 +14,7 @@ import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.codec.ByteToMessageDecoder;
 import io.netty.handler.codec.MessageToByteEncoder;
 import io.netty.handler.timeout.IdleStateHandler;
-
-
 import java.net.InetSocketAddress;
-
-
 
 public class TbaClient<T> {
 

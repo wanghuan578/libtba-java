@@ -1,14 +1,18 @@
 package com.spirit.tba.core;
-
+/**
+ * @author wanghuan
+ * @Date 2013/11/08 11:38
+ * @licence all rights reserved
+ */
 
 public class TbaEvent extends TbaEventBase {
 
-    private TsRpcHead head;
+    private TbaRpcHead head;
     private Object body;
     private Integer length;
     private Short encryptType;
 
-    public TbaEvent(TsRpcHead head, Object body, int len, Short encrypt) {
+    public TbaEvent(TbaRpcHead head, Object body, int len, Short encrypt) {
         this.head = head;
         this.body = body;
         this.length = len;
@@ -19,16 +23,16 @@ public class TbaEvent extends TbaEventBase {
         return encryptType;
     }
 
-    public TbaEvent(TsRpcHead head, Object body) {
+    public TbaEvent(TbaRpcHead head, Object body) {
         this.head = head;
         this.body = body;
     }
 
-    public TsRpcHead getHead() {
+    public TbaRpcHead getHead() {
         return head;
     }
 
-    public void setHead(TsRpcHead head) {
+    public void setHead(TbaRpcHead head) {
         this.head = head;
     }
 

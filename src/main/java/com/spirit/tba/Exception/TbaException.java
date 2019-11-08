@@ -1,6 +1,10 @@
 package com.spirit.tba.Exception;
 
-
+/**
+ * @author wanghuan
+ * @Date 2013/11/08 11:38
+ * @licence all rights reserved
+ */
 
 public class TbaException extends Exception {
 

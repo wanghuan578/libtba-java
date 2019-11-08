@@ -1,5 +1,9 @@
 package com.spirit.tba.core;
-
+/**
+ * @author wanghuan
+ * @Date 2013/11/08 11:38
+ * @licence all rights reserved
+ */
 import com.spirit.tba.Exception.TbaException;
 import com.spirit.tba.tools.TbaHeadUtil;
 import org.apache.thrift.TBase;
@@ -8,26 +12,26 @@ import org.apache.thrift.protocol.TProtocol;
 import java.lang.reflect.*;
 import static com.spirit.tba.Exception.ErrorType.*;
 
-public class TsRpcEventParser<TMessageBody extends TBase> {
+public class TbaRpcEventParser<TMessageBody extends TBase> {
 
-	private TsRpcByteBuffer in_stream = null;
+	private TbaRpcByteBuffer in_stream = null;
 	private TMessageBody body_;
 
-	public TsRpcEventParser(byte[] msg, int size){
-		in_stream = new TsRpcByteBuffer(msg, size);
+	public TbaRpcEventParser(byte[] msg, int size){
+		in_stream = new TbaRpcByteBuffer(msg, size);
 	}
 
-	public TsRpcEventParser(TsRpcByteBuffer msg){
+	public TbaRpcEventParser(TbaRpcByteBuffer msg){
 		in_stream = msg;
 	}
 
-	public TsRpcEventParser(TsRpcByteBuffer in, int offset){
-		in_stream = new TsRpcByteBuffer(in, offset);
+	public TbaRpcEventParser(TbaRpcByteBuffer in, int offset){
+		in_stream = new TbaRpcByteBuffer(in, offset);
 	}
 
 	public TMessageBody Decode(Class<TMessageBody> clazz) throws TbaException, IllegalAccessException, InstantiationException {
 
-		TProtocol protocol = new TsRpcThriftBinaryProtocol(in_stream, TbaHeadUtil.HEAD_SIZE, (in_stream.length() - TbaHeadUtil.HEAD_SIZE));
+		TProtocol protocol = new TbaRpcThriftBinaryProtocol(in_stream, TbaHeadUtil.HEAD_SIZE, (in_stream.length() - TbaHeadUtil.HEAD_SIZE));
 
 		body_ = clazz.newInstance();
 
@@ -41,7 +45,7 @@ public class TsRpcEventParser<TMessageBody extends TBase> {
 
 	public TMessageBody ToEvent(Class<TMessageBody> clazz, int offset) throws TbaException, IllegalAccessException, InstantiationException {
 
-		TProtocol protocol = new TsRpcThriftBinaryProtocol(in_stream, offset, (in_stream.length() - offset));
+		TProtocol protocol = new TbaRpcThriftBinaryProtocol(in_stream, offset, (in_stream.length() - offset));
 
 		body_ = clazz.newInstance();
 
@@ -53,7 +57,7 @@ public class TsRpcEventParser<TMessageBody extends TBase> {
 		}
 	}
 
-	public TsRpcHead Head(){
+	public TbaRpcHead Head(){
 		return TbaHeadUtil.parser(in_stream);
 	}
 

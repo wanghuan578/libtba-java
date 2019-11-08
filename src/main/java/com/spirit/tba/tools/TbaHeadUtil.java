@@ -1,9 +1,13 @@
 package com.spirit.tba.tools;
-
+/**
+ * @author wanghuan
+ * @Date 2013/11/08 11:38
+ * @licence all rights reserved
+ */
 import com.spirit.tba.Exception.TbaException;
-import com.spirit.tba.core.TsMagic;
-import com.spirit.tba.core.TsRpcByteBuffer;
-import com.spirit.tba.core.TsRpcHead;
+import com.spirit.tba.core.TbaMagic;
+import com.spirit.tba.core.TbaRpcByteBuffer;
+import com.spirit.tba.core.TbaRpcHead;
 import static com.spirit.tba.Exception.ErrorType.COMMON_HEAD_LENGTH_INVALID;
 import static com.spirit.tba.Exception.ErrorType.SHORT_HEAD_LENGTH_INVALID;
 
@@ -11,31 +15,31 @@ public class TbaHeadUtil {
 
     public static final int HEAD_SIZE = 40;
 
-    public static TsMagic preParser(byte[] data) throws TbaException {
-        if (data.length != TsMagic.MAGIC_OFFSET) {
+    public static TbaMagic preParser(byte[] data) throws TbaException {
+        if (data.length != TbaMagic.MAGIC_OFFSET) {
             throw new TbaException(SHORT_HEAD_LENGTH_INVALID);
         }
-        TsRpcByteBuffer bb = new TsRpcByteBuffer(data, TsMagic.MAGIC_OFFSET);
+        TbaRpcByteBuffer bb = new TbaRpcByteBuffer(data, TbaMagic.MAGIC_OFFSET);
         return preParser(bb);
     }
 
-    public static TsRpcHead parser(byte[] data) throws TbaException {
+    public static TbaRpcHead parser(byte[] data) throws TbaException {
         if (data.length != HEAD_SIZE) {
             throw new TbaException(COMMON_HEAD_LENGTH_INVALID);
         }
-        TsRpcByteBuffer bb = new TsRpcByteBuffer(data, HEAD_SIZE);
+        TbaRpcByteBuffer bb = new TbaRpcByteBuffer(data, HEAD_SIZE);
         return parser(bb);
     }
 
-    public static TsMagic preParser(TsRpcByteBuffer buff) {
-        TsMagic magic = new TsMagic();
+    public static TbaMagic preParser(TbaRpcByteBuffer buff) {
+        TbaMagic magic = new TbaMagic();
         magic.setLength(buff.ReadI32());
         magic.setFlag(buff.ReadI16());
         return magic;
     }
 
-    public static TsRpcHead parser(TsRpcByteBuffer buff) {
-        TsRpcHead head = new TsRpcHead();
+    public static TbaRpcHead parser(TbaRpcByteBuffer buff) {
+        TbaRpcHead head = new TbaRpcHead();
         head.setLength(buff.ReadI32());
         head.setFlag(buff.ReadI16());
         head.setType(buff.ReadI16());
@@ -50,7 +54,7 @@ public class TbaHeadUtil {
         return head;
     }
 
-    public static void build(TsRpcByteBuffer protcol, TsRpcHead head, int messageLength) throws TbaException {
+    public static void build(TbaRpcByteBuffer protcol, TbaRpcHead head, int messageLength) throws TbaException {
         protcol.writeBufferBegin(0);
         protcol.writeI32(messageLength);
         protcol.writeI16(head.getFlag());
@@ -65,7 +69,7 @@ public class TbaHeadUtil {
         protcol.writeI32(head.getAttachId4());
     }
 
-    public static int build_all(TsRpcByteBuffer protcol, TsRpcHead head) throws TbaException {
+    public static int build_all(TbaRpcByteBuffer protcol, TbaRpcHead head) throws TbaException {
         int end = protcol.length();
         build(protcol, head, end);
         protcol.writeBufferBegin(end);

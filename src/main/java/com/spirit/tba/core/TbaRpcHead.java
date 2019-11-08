@@ -1,6 +1,11 @@
 package com.spirit.tba.core;
 
-public class TsRpcHead {
+/**
+ * @author wanghuan
+ * @Date 2013/11/08 11:38
+ * @licence all rights reserved
+ */
+public class TbaRpcHead {
 	
 	private int    	length;            
 	private short  	flag;              
@@ -14,7 +19,7 @@ public class TsRpcHead {
 	private int     attachId3;
 	private int     attachId4;
 	
-	public TsRpcHead(){
+	public TbaRpcHead(){
 		
 		length = 0;            
 		flag = 0;              
@@ -29,7 +34,7 @@ public class TsRpcHead {
 		attachId4 = 0;
 	}
 
-	public TsRpcHead(int type){
+	public TbaRpcHead(int type){
 		
 		length = 0;            
 		flag = 0;              
