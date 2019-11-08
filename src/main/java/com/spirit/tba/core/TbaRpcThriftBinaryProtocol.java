@@ -6,7 +6,7 @@ package com.spirit.tba.core;
  * @licence all rights reserved
  */
 import java.nio.ByteBuffer;
-import com.spirit.tba.Exception.TbaException;
+import com.spirit.tba.exception.TbaException;
 import org.apache.thrift.TException;
 import org.apache.thrift.protocol.TField;
 import org.apache.thrift.protocol.TList;

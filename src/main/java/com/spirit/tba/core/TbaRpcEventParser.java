@@ -4,13 +4,13 @@ package com.spirit.tba.core;
  * @Date 2013/11/08 11:38
  * @licence all rights reserved
  */
-import com.spirit.tba.Exception.TbaException;
+import com.spirit.tba.exception.TbaException;
 import com.spirit.tba.tools.TbaHeadUtil;
 import org.apache.thrift.TBase;
 import org.apache.thrift.TException;
 import org.apache.thrift.protocol.TProtocol;
 import java.lang.reflect.*;
-import static com.spirit.tba.Exception.ErrorType.*;
+import static com.spirit.tba.exception.ErrorType.*;
 
 public class TbaRpcEventParser<TMessageBody extends TBase> {
 

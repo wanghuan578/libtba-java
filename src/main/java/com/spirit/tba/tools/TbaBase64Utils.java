@@ -4,9 +4,6 @@ package com.spirit.tba.tools;
  * @Date 2013/11/08 11:38
  * @licence all rights reserved
  */
-import com.spirit.tba.Exception.TbaException;
-import java.io.IOException;
-import static com.spirit.tba.Exception.ErrorType.UNEXPECTED_EXCEPTION;
 
 public class TbaBase64Utils {
     public static String encode(byte[] data) throws Exception {

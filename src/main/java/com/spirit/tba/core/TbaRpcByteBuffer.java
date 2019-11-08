@@ -7,9 +7,9 @@ package com.spirit.tba.core;
  */
 import java.io.UnsupportedEncodingException;
 import java.nio.ByteBuffer;
-import com.spirit.tba.Exception.TbaException;
+import com.spirit.tba.exception.TbaException;
 import org.apache.thrift.TException;
-import static com.spirit.tba.Exception.ErrorType.WRITE_BUFFER_OUT_OF_RANGE_EXCEPTION;
+import static com.spirit.tba.exception.ErrorType.WRITE_BUFFER_OUT_OF_RANGE_EXCEPTION;
 
 
 public class TbaRpcByteBuffer {

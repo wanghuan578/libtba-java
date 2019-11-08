@@ -33,7 +33,6 @@ public class TbaRsaUtilsTest
     {
 
         try {
-
             System.out.println("\n密钥对构造完毕,甲方将公钥公布给乙方，开始进行加密数据的传输\n");
             String str = "甲向已数据流方向测试";
             System.out.println("数据原文: " + str);
@@ -64,7 +63,6 @@ public class TbaRsaUtilsTest
     public void digitalSignatureTest() {
 
         try {
-
             String str = "甲的通讯内容";
             byte[] code1 = TbaRsaUtils.encryptByPrivateKey(str.getBytes(), privateKey);
             String digitalSignature = TbaRsaUtils.signature(code1, privateKey);

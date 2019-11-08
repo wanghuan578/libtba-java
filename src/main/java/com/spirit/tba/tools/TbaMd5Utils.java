@@ -4,9 +4,9 @@ package com.spirit.tba.tools;
  * @Date 2013/11/08 11:38
  * @licence all rights reserved
  */
-import com.spirit.tba.Exception.TbaException;
+import com.spirit.tba.exception.TbaException;
 import java.security.MessageDigest;
-import static com.spirit.tba.Exception.ErrorType.UNEXPECTED_EXCEPTION;
+import static com.spirit.tba.exception.ErrorType.UNEXPECTED_EXCEPTION;
 
 public class TbaMd5Utils {
     private static final String slat = "*#spirit@#";

@@ -1,4 +1,4 @@
-package com.spirit.tba.Exception;
+package com.spirit.tba.exception;
 
 /**
  * @author wanghuan

@@ -4,12 +4,11 @@ package com.spirit.tba.tools;
  * @Date 2013/11/08 11:38
  * @licence all rights reserved
  */
-import com.spirit.tba.Exception.TbaException;
+import com.spirit.tba.exception.TbaException;
 import com.spirit.tba.core.TbaMagic;
 import com.spirit.tba.core.TbaRpcByteBuffer;
 import com.spirit.tba.core.TbaRpcHead;
-import static com.spirit.tba.Exception.ErrorType.COMMON_HEAD_LENGTH_INVALID;
-import static com.spirit.tba.Exception.ErrorType.SHORT_HEAD_LENGTH_INVALID;
+import static com.spirit.tba.exception.ErrorType.*;
 
 public class TbaHeadUtil {
 

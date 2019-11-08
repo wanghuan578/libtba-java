@@ -4,7 +4,7 @@ package com.spirit.tba.core;
  * @Date 2013/11/08 11:38
  * @licence all rights reserved
  */
-import com.spirit.tba.Exception.TbaException;
+import com.spirit.tba.exception.TbaException;
 import com.spirit.tba.tools.TbaHeadUtil;
 import org.apache.thrift.TBase;
 
