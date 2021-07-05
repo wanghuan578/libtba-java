@@ -9,10 +9,13 @@ import java.security.MessageDigest;
 import static com.spirit.tba.exception.ErrorType.UNEXPECTED_EXCEPTION;
 
 public class TbaMd5Utils {
-    private static final String slat = "*#spirit@#";
+    private static String _slat = "*#spirit@#";
+    public static void setSlat(String slat) {
+        _slat = slat;
+    }
     public static String md5Hex(String dataStr) throws TbaException {
         try {
-            dataStr = dataStr + slat;
+            dataStr = dataStr + _slat;
             MessageDigest m = MessageDigest.getInstance("MD5");
             m.update(dataStr.getBytes("UTF8"));
             byte s[] = m.digest();
