@@ -7,7 +7,7 @@ package com.spirit.tba.exception;
  */
 public enum ErrorType {
 
-    SERIALIZE_EXCEPTION("0001", "序列化失败"),
+    TERMINAL_PROCESS_EXCEPTION("0001", "terminal process exception"),
     DESERIALIZE_EXCEPTION("0002", "反序列化失败"),
     WRITE_BUFFER_OUT_OF_RANGE_EXCEPTION("0003", "写入缓存越界"),
     SHORT_HEAD_LENGTH_INVALID("0004", "magic头长度非法"),
@@ -15,13 +15,13 @@ public enum ErrorType {
 
 
     UNEXPECTED_EXCEPTION("1000", "未知异常"),
-
+    USER_DEFINED_EXCEPTION("2000", "user defined exception"),
     ;
 
     private String code;
     private String text;
 
-    ErrorType(String code, String name) {
+    private ErrorType(String code, String name) {
         this.code = code;
         this.text = name;
     }

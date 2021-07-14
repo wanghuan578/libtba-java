@@ -10,9 +10,11 @@ import static com.spirit.tba.exception.ErrorType.UNEXPECTED_EXCEPTION;
 
 public class TbaMd5Utils {
     private static String _slat = "*#spirit@#";
+
     public static void setSlat(String slat) {
         _slat = slat;
     }
+
     public static String md5Hex(String dataStr) throws TbaException {
         try {
             dataStr = dataStr + _slat;
