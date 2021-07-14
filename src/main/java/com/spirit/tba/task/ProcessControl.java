@@ -27,11 +27,10 @@ public class ProcessControl {
             }
             else {
                 command = StringUtils.join(new String [] {
-                        "DISPLAY=:1",
-                        processInfo.getPath() + "/" + processInfo.getProcessName(),
-                        "--roomid=" + processInfo.getRoomId(),
-                        "--config=" + processInfo.getPath() + "/" + "config.yaml"
-                }, " ");
+                        "/bin/sh",
+                        "start.sh",
+                        "1",
+                        processInfo.getRoomId()}, " ");
                 log.info("linux cmd command: {}", command);
                 process = Runtime.getRuntime().exec(command);
             }
