@@ -24,7 +24,7 @@ public class ProcessControl {
         else {
             command = StringUtils.join(new String [] {
                     //processInfo.getPath() + "/" + processInfo.getProcessName(),
-                    processInfo.getProcessName(),
+                    "./" + processInfo.getProcessName(),
                     "--roomid=" + processInfo.getRoomId()
             }, " ");
             //throw new RuntimeException("system not available");
