@@ -29,7 +29,8 @@ public class ProcessControl {
                 command = StringUtils.join(new String [] {
                         "DISPLAY=:1",
                         processInfo.getPath() + "/" + processInfo.getProcessName(),
-                        "--roomid=" + processInfo.getRoomId()
+                        "--roomid=" + processInfo.getRoomId(),
+                        "--config=" + processInfo.getPath() + "/" + "config.yaml"
                 }, " ");
                 log.info("linux cmd command: {}", command);
                 process = Runtime.getRuntime().exec(command);
