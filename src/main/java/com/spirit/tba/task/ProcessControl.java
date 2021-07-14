@@ -14,7 +14,7 @@ public class ProcessControl {
         Process process = null;
         int exitVal = 0;
         String command = null;
-        
+
         try {
             if (TbaSystemUtils.win32()) {
                 command = StringUtils.join(new String [] {
@@ -27,6 +27,7 @@ public class ProcessControl {
             }
             else {
                 command = StringUtils.join(new String [] {
+                        "DISPLAY=:1",
                         processInfo.getPath() + "/" + processInfo.getProcessName(),
                         "--roomid=" + processInfo.getRoomId()
                 }, " ");
