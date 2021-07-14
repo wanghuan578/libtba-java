@@ -8,6 +8,15 @@ public class ProcessInfo {
     private String roomId;
     private String pid;
     private TaskType type;
+    private String displayId;
+
+    public String getDisplayId() {
+        return displayId;
+    }
+
+    public void setDisplayId(String displayId) {
+        this.displayId = displayId;
+    }
 
     public TaskType getType() {
         return type;

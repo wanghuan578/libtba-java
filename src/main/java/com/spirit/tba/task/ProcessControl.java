@@ -28,20 +28,22 @@ public class ProcessControl {
             else {
                 command = StringUtils.join(new String [] {
                         "/bin/sh",
-                        "start.sh",
-                        "1",
-                        processInfo.getRoomId()}, " ");
+                        "start-rdp.sh",
+                        processInfo.getDisplayId(),
+                        processInfo.getRoomId(),
+                        processInfo.getPath()
+                }, " ");
                 log.info("linux cmd command: {}", command);
                 process = Runtime.getRuntime().exec(command);
             }
         } catch (IOException exception) {
             throw new TbaException(USER_DEFINED_EXCEPTION.SetText(exception.getMessage()));
         }
-        //process = Runtime.getRuntime().exec("cmd.exe /k start " + "WebrtcRdp.exe --roomid=1234", new String[]{""}, new File(path));
 
-        //new RedirCmdStreamThread(process.getInputStream(), "INFO").start();
-        //new RedirCmdStreamThread(process.getErrorStream(),"ERR").start();
+        new RedirCmdStreamThread(process.getInputStream(), "INFO").start();
+        new RedirCmdStreamThread(process.getErrorStream(),"ERR").start();
         ob.onOpenSucceed(true);
+
         try {
             exitVal = process.waitFor();
         } catch (InterruptedException e) {
