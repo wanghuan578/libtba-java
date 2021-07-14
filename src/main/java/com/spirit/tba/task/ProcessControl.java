@@ -14,26 +14,25 @@ public class ProcessControl {
         Process process = null;
         int exitVal = 0;
         String command = null;
-        if (TbaSystemUtils.win32()) {
-            command = StringUtils.join(new String [] {
-                    "cmd.exe /k start",
-                    processInfo.getProcessName() + ".exe",
-                    "--roomid=" + processInfo.getRoomId()
-            }, " ");
-        }
-        else {
-            command = StringUtils.join(new String [] {
-                    //processInfo.getPath() + "/" + processInfo.getProcessName(),
-                    "./" + processInfo.getProcessName(),
-                    "--roomid=" + processInfo.getRoomId()
-            }, " ");
-            //throw new RuntimeException("system not available");
-        }
-
-        log.info("cmd task command: {}", command);
-
+        
         try {
-            process = Runtime.getRuntime().exec(command, new String[]{""}, new File(processInfo.getPath()));
+            if (TbaSystemUtils.win32()) {
+                command = StringUtils.join(new String [] {
+                        "cmd.exe /k start",
+                        processInfo.getProcessName() + ".exe",
+                        "--roomid=" + processInfo.getRoomId()
+                }, " ");
+                log.info("win32 cmd command: {}", command);
+                process = Runtime.getRuntime().exec(command, new String[]{""}, new File(processInfo.getPath()));
+            }
+            else {
+                command = StringUtils.join(new String [] {
+                        processInfo.getPath() + "/" + processInfo.getProcessName(),
+                        "--roomid=" + processInfo.getRoomId()
+                }, " ");
+                log.info("linux cmd command: {}", command);
+                process = Runtime.getRuntime().exec(command);
+            }
         } catch (IOException exception) {
             throw new TbaException(USER_DEFINED_EXCEPTION.SetText(exception.getMessage()));
         }
