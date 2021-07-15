@@ -66,7 +66,8 @@ public class ProcessControl {
             }
             else {
                 command = StringUtils.join(new String [] {
-                        "/bin/sh kill -9",
+                        "/bin/sh",
+                        "kill -2",
                         processInfo.getPid()}, " ");
             }
 

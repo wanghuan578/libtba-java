@@ -24,39 +24,5 @@ public class AsynStopRunner implements Runnable {
         } catch (TbaException e) {
             log.error("ProcessControl close error: [{}]", e.getMessage());
         }
-
-//        Process process = null;
-//        int exitVal = 0;
-//        try {
-//            String command = null;
-//            if (TbaSystemUtils.win32()) {
-//                command = StringUtils.join(new String [] {
-//                        "taskkill /F /im",
-//                        "WebrtcRdp.exe"
-//                }, " ");
-//            }
-//            else {
-//                command = StringUtils.join(new String [] {
-//                        "/bin/sh kill -9",
-//                        processInfo.getPid()}, " ");
-//            }
-//
-//            log.info("cmd task command: {}", command);
-//            process = Runtime.getRuntime().exec(command);
-//            //process = Runtime.getRuntime().exec("cmd.exe /k start " + "WebrtcRdp.exe --roomid=1234", new String[]{""}, new File(path));
-//
-//            new RedirCmdStreamThread(process.getInputStream(), "INFO").start();
-//            new RedirCmdStreamThread(process.getErrorStream(),"ERR").start();
-//
-//            exitVal = process.waitFor();
-//        } catch (InterruptedException | IOException e) {
-//            e.printStackTrace();
-//        }
-//
-//        if (exitVal != 0){
-//            throw new RuntimeException("cmd任务执行失败");
-//        }
-
-        //todo
     }
 }
